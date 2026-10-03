@@ -1,0 +1,1 @@
+ALTER TABLE "push_subscriptions" ADD COLUMN "topics" text[] DEFAULT ARRAY['cards','loans','deposits','recurring','budgets']::text[] NOT NULL;

@@ -1,0 +1,202 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+  Fintra — sistema de diseno "Libro mayor silencioso" (D1, direccion C).
+  Fuente de verdad visual: el lienzo publicado en design/d1/Tokens.dc.html.
+  Sin tarjetas con sombra ni bordes muy redondeados: la jerarquia se apoya
+  en lineas de 1px, tipografia serif para nombres/etiquetas y monoespaciada
+  para toda cifra, fecha y etiqueta en mayuscula.
+*/
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-serif);
+  --font-serif: var(--font-serif);
+  --font-mono: var(--font-mono);
+  --font-heading: var(--font-serif);
+
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --color-income: var(--income);
+  --color-expense: var(--expense);
+  --color-transfer: var(--transfer);
+
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+}
+
+/* Claro — variante de la misma paleta calida, para cuando el usuario elige "claro" */
+:root {
+  --background: #f5f3ee;
+  --foreground: #1b1812;
+  --card: #ffffff;
+  --card-foreground: #1b1812;
+  --popover: #ffffff;
+  --popover-foreground: #1b1812;
+  --primary: #1b1812;
+  --primary-foreground: #f5f3ee;
+  --secondary: #ebe7dd;
+  --secondary-foreground: #1b1812;
+  --muted: #ebe7dd;
+  --muted-foreground: #6d6659;
+  --accent: #ebe7dd;
+  --accent-foreground: #1b1812;
+  --destructive: #935b3d;
+  --border: #ddd6c7;
+  /* Borde de controles de formulario: 3:1 contra el fondo (WCAG 1.4.11). */
+  --input: #918c82;
+  --ring: #1b1812;
+
+  --income: #48704b;
+  /* Series de graficos de dos colores (ingresos vs gastos): validadas con CVD y
+     contraste contra la superficie; los tokens de texto --income/--expense no
+     alcanzan para distinguir dos barras. */
+  --series-income: #2f5e3b;
+  --series-expense: #b26a3f;
+  --expense: #935b3d;
+  --transfer: #4c6b85;
+
+  --chart-1: #1b1812;
+  --chart-2: #4f7a52;
+  --chart-3: #935b3d;
+  --chart-4: #4c6b85;
+  --chart-5: #a39c8c;
+
+  --radius: 0.125rem;
+
+  --sidebar: #ffffff;
+  --sidebar-foreground: #1b1812;
+  --sidebar-primary: #1b1812;
+  --sidebar-primary-foreground: #f5f3ee;
+  --sidebar-accent: #ebe7dd;
+  --sidebar-accent-foreground: #1b1812;
+  --sidebar-border: #ddd6c7;
+  --sidebar-ring: #1b1812;
+}
+
+/* Oscuro — tema por defecto de Fintra */
+.dark {
+  --background: #100f0d;
+  --foreground: #e4e1d8;
+  --card: #17150f;
+  --card-foreground: #e4e1d8;
+  --popover: #17150f;
+  --popover-foreground: #e4e1d8;
+  --primary: #e4e1d8;
+  --primary-foreground: #100f0d;
+  --secondary: #1c1a15;
+  --secondary-foreground: #e4e1d8;
+  --muted: #1c1a15;
+  --muted-foreground: #9a9689;
+  --accent: #1c1a15;
+  --accent-foreground: #e4e1d8;
+  --destructive: #b4734f;
+  --border: #2a2822;
+  /* Borde de controles de formulario: 3:1 contra el fondo (WCAG 1.4.11). */
+  --input: #65635f;
+  --ring: #e4e1d8;
+
+  --income: #7e9a79;
+  --series-income: #a9c9a4;
+  --series-expense: #b4734f;
+  --expense: #b4734f;
+  --transfer: #8fa0b4;
+
+  --chart-1: #e4e1d8;
+  --chart-2: #7e9a79;
+  --chart-3: #b4734f;
+  --chart-4: #8fa0b4;
+  --chart-5: #605c50;
+
+  --sidebar: #100f0d;
+  --sidebar-foreground: #e4e1d8;
+  --sidebar-primary: #e4e1d8;
+  --sidebar-primary-foreground: #100f0d;
+  --sidebar-accent: #1c1a15;
+  --sidebar-accent-foreground: #e4e1d8;
+  --sidebar-border: #2a2822;
+  --sidebar-ring: #e4e1d8;
+}
+
+/* Impresion / «Guardar como PDF»: siempre en claro (con el tema oscuro, el texto claro
+   sobre papel blanco no se leeria) y sin la navegacion. */
+@media print {
+  .dark {
+    --background: #ffffff;
+    --foreground: #1b1812;
+    --card: #ffffff;
+    --card-foreground: #1b1812;
+    --muted: #ebe7dd;
+    --muted-foreground: #5c5649;
+    --border: #cfc8b8;
+    --income: #2f5e3b;
+    --series-income: #2f5e3b;
+    --series-expense: #b26a3f;
+    --expense: #8a4f31;
+    --destructive: #8a4f31;
+    --transfer: #4c6b85;
+  }
+  body {
+    background: #ffffff;
+    print-color-adjust: exact;
+  }
+  main {
+    padding-bottom: 0 !important;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-serif;
+  }
+}
+
+@layer utilities {
+  /* Cifras, fechas y etiquetas en mayuscula van siempre en mono con numeros tabulares */
+  .font-mono {
+    font-variant-numeric: tabular-nums;
+  }
+}
