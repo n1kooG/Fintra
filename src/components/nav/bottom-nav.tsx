@@ -33,7 +33,7 @@ export function BottomNav() {
   return (
     <nav
       aria-label="Navegación principal"
-      className="border-foreground/15 bg-background/55 fixed inset-x-3 bottom-[calc(12px+env(safe-area-inset-bottom))] z-40 flex h-16 items-center gap-1 rounded-full border p-1.5 shadow-[0_10px_32px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.16)] backdrop-blur-xl backdrop-saturate-150 md:hidden print:hidden"
+      className="border-foreground/15 bg-background/55 fixed inset-x-3 bottom-[calc(4px+env(safe-area-inset-bottom))] z-40 flex h-16 items-center gap-1 rounded-full border p-1.5 shadow-[0_10px_32px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.16)] backdrop-blur-xl backdrop-saturate-150 md:hidden print:hidden"
     >
       {LEFT.map((item) => (
         <NavLink
