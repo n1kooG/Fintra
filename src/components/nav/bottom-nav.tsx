@@ -17,12 +17,12 @@ export function BottomNav() {
   const isActive = (href: string) => pathname.startsWith(href);
 
   return (
-    <nav className="border-border bg-background/95 fixed inset-x-0 bottom-0 z-40 flex h-[70px] items-center border-t px-2 backdrop-blur md:hidden print:hidden">
+    <nav className="border-border bg-background/95 fixed inset-x-0 bottom-0 z-40 flex h-[calc(70px+env(safe-area-inset-bottom))] items-center border-t px-2 pb-[env(safe-area-inset-bottom)] backdrop-blur md:hidden print:hidden">
       {LEFT.map((item) => (
         <Link
           key={item.href}
           href={item.href}
-          className="flex flex-1 flex-col items-center gap-1 font-mono text-[10px] tracking-[0.06em] uppercase"
+          className="flex min-h-11 flex-1 flex-col items-center justify-center gap-1 font-mono text-[10px] tracking-[0.06em] uppercase"
         >
           <span
             className={cn(
@@ -40,7 +40,7 @@ export function BottomNav() {
         <Link
           href="/movimientos/nuevo"
           aria-label="Nuevo movimiento"
-          className="border-foreground flex size-[34px] items-center justify-center border font-mono text-[15px] leading-none"
+          className="bg-foreground text-background flex size-10 items-center justify-center font-mono text-[18px] leading-none font-medium"
         >
           +
         </Link>
@@ -50,7 +50,7 @@ export function BottomNav() {
         <Link
           key={item.href}
           href={item.href}
-          className="flex flex-1 flex-col items-center gap-1 font-mono text-[10px] tracking-[0.06em] uppercase"
+          className="flex min-h-11 flex-1 flex-col items-center justify-center gap-1 font-mono text-[10px] tracking-[0.06em] uppercase"
         >
           <span
             className={cn(
@@ -75,7 +75,7 @@ function MoreMenuTrigger({ active }: { active: boolean }) {
   return (
     <Link
       href="/mas"
-      className="flex flex-1 flex-col items-center gap-1 font-mono text-[10px] tracking-[0.06em] uppercase"
+      className="flex min-h-11 flex-1 flex-col items-center justify-center gap-1 font-mono text-[10px] tracking-[0.06em] uppercase"
     >
       <span
         className={cn(
@@ -84,7 +84,7 @@ function MoreMenuTrigger({ active }: { active: boolean }) {
             : "text-muted-foreground",
         )}
       >
-        Mas
+        Más
       </span>
     </Link>
   );

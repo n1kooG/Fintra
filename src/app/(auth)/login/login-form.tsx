@@ -87,7 +87,7 @@ export function LoginForm({ next }: { next: string }) {
         <Button
           type="submit"
           variant="outline"
-          className="border-border text-muted-foreground w-full py-3 font-mono text-[12px]"
+          className="w-full py-3 font-mono text-[12px]"
         >
           Google
         </Button>

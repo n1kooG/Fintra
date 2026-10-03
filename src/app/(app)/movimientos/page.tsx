@@ -101,9 +101,9 @@ export default async function MovimientosPage({
   return (
     <SelectionProvider>
       <div className="mx-auto flex min-h-dvh max-w-5xl flex-col gap-6 px-6 py-8 pb-24 md:px-11">
-        <div className="flex items-baseline justify-between">
+        <div className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3">
           <h1 className="text-2xl font-medium md:text-[23px]">Movimientos</h1>
-          <div className="flex items-center gap-5">
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
             <SelectionToggle />
             <Button asChild>
               <Link href="/movimientos/nuevo">+ Nuevo movimiento</Link>
@@ -113,32 +113,32 @@ export default async function MovimientosPage({
 
         <form
           method="GET"
-          className="border-border flex flex-wrap items-center gap-3 border-t border-b py-3 font-mono text-[12px]"
+          className="border-border grid grid-cols-2 items-center gap-3 border-t border-b py-3 font-mono text-[12px] md:flex md:flex-wrap max-md:[&_input]:text-base max-md:[&_select]:text-base"
         >
           <input
             type="text"
             name="q"
             defaultValue={params.q}
             placeholder="buscar comercio o nota..."
-            className="text-muted-foreground placeholder:text-muted-foreground min-w-[160px] flex-1 bg-transparent focus:outline-none"
+            className="text-muted-foreground placeholder:text-muted-foreground border-border col-span-2 min-w-[160px] flex-1 border-b bg-transparent py-1 focus:outline-none md:col-span-1 md:border-0 md:py-0"
           />
           <input
             type="date"
             name="desde"
             defaultValue={params.desde}
-            className="text-foreground bg-transparent [color-scheme:dark] focus:outline-none"
+            className="text-foreground bg-transparent focus:outline-none dark:[color-scheme:dark]"
           />
-          <span className="text-muted-foreground">–</span>
+          <span className="text-muted-foreground hidden md:inline">–</span>
           <input
             type="date"
             name="hasta"
             defaultValue={params.hasta}
-            className="text-foreground bg-transparent [color-scheme:dark] focus:outline-none"
+            className="text-foreground bg-transparent focus:outline-none dark:[color-scheme:dark]"
           />
           <select
             name="cuenta"
             defaultValue={params.cuenta}
-            className="text-foreground bg-transparent focus:outline-none"
+            className="text-foreground border-border col-span-2 w-full border-b bg-transparent py-1 focus:outline-none md:col-span-1 md:w-auto md:border-0 md:py-0"
           >
             <option value="">Todas las cuentas</option>
             {accounts.map((a) => (
@@ -150,7 +150,7 @@ export default async function MovimientosPage({
           <select
             name="categoria"
             defaultValue={params.categoria}
-            className="text-foreground bg-transparent focus:outline-none"
+            className="text-foreground border-border col-span-2 w-full border-b bg-transparent py-1 focus:outline-none md:col-span-1 md:w-auto md:border-0 md:py-0"
           >
             <option value="">Todas las categorías</option>
             {orderCategories(categories).map((c) => (
@@ -164,7 +164,7 @@ export default async function MovimientosPage({
               name="etiqueta"
               defaultValue={params.etiqueta}
               aria-label="Etiqueta"
-              className="text-foreground bg-transparent focus:outline-none"
+              className="text-foreground border-border col-span-2 w-full border-b bg-transparent py-1 focus:outline-none md:col-span-1 md:w-auto md:border-0 md:py-0"
             >
               <option value="">Todas las etiquetas</option>
               {tags.map((t) => (
@@ -174,11 +174,14 @@ export default async function MovimientosPage({
               ))}
             </select>
           ) : null}
-          <button type="submit" className="border-foreground border-b uppercase">
+          <button
+            type="submit"
+            className="bg-foreground text-background md:border-foreground md:text-foreground col-span-2 py-2.5 font-medium uppercase md:col-span-1 md:border-b md:bg-transparent md:py-0"
+          >
             filtrar
           </button>
 
-          <div className="ml-auto flex gap-4 uppercase">
+          <div className="col-span-2 -mx-1 flex gap-4 overflow-x-auto px-1 pb-1 uppercase md:mx-0 md:ml-auto md:overflow-visible md:px-0 md:pb-0">
             {TYPE_TABS.map((tab) => (
               <TypeTabLink key={tab.value} tab={tab} params={params} />
             ))}
@@ -202,7 +205,7 @@ export default async function MovimientosPage({
                   {group.items.map((tx) => (
                     <div
                       key={tx.id}
-                      className="group border-border flex items-baseline gap-3 border-b py-2.5"
+                      className="group border-border flex flex-wrap items-baseline gap-x-3 gap-y-1 border-b py-2.5 md:flex-nowrap"
                     >
                       <RowCheckbox id={tx.id} label={tx.merchant || "movimiento"} />
                       <div className="min-w-0 flex-1">
@@ -237,15 +240,17 @@ export default async function MovimientosPage({
                         signDisplay="always"
                         className="text-[13.5px]"
                       />
-                      {tx.type !== "transfer" ? (
-                        <Link
-                          href={`/movimientos/nuevo?duplicar=${tx.id}`}
-                          className="text-muted-foreground font-mono text-[10px] uppercase transition-opacity focus-visible:opacity-100 md:opacity-0 md:group-hover:opacity-100"
-                        >
-                          duplicar
-                        </Link>
-                      ) : null}
-                      <DeleteTransactionButton transactionId={tx.id} />
+                      <div className="flex w-full items-baseline justify-end gap-4 md:w-auto md:gap-3">
+                        {tx.type !== "transfer" ? (
+                          <Link
+                            href={`/movimientos/nuevo?duplicar=${tx.id}`}
+                            className="text-muted-foreground font-mono text-[10px] uppercase transition-opacity focus-visible:opacity-100 md:opacity-0 md:group-hover:opacity-100"
+                          >
+                            duplicar
+                          </Link>
+                        ) : null}
+                        <DeleteTransactionButton transactionId={tx.id} />
+                      </div>
                     </div>
                   ))}
                 </div>

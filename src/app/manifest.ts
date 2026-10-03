@@ -10,10 +10,15 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Fintra · Finanzas personales",
     short_name: "Fintra",
     description: "Gestor de finanzas personales para Chile.",
+    id: "/",
     start_url: "/dashboard",
     scope: "/",
     display: "standalone",
-    orientation: "portrait",
+    display_override: ["standalone", "minimal-ui"],
+    // Sin fijar la orientacion: en tablet y escritorio la app tambien se usa apaisada.
+    orientation: "any",
+    categories: ["finance", "productivity"],
+    prefer_related_applications: false,
     lang: "es-CL",
     background_color: "#100f0d",
     theme_color: "#100f0d",
@@ -28,9 +33,27 @@ export default function manifest(): MetadataRoute.Manifest {
       },
     ],
     shortcuts: [
-      { name: "Nuevo movimiento", short_name: "Nuevo", url: "/movimientos/nuevo" },
-      { name: "Presupuestos", url: "/presupuestos" },
-      { name: "Calendario", url: "/calendario" },
+      {
+        name: "Nuevo movimiento",
+        short_name: "Nuevo",
+        url: "/movimientos/nuevo",
+        icons: [{ src: "/icons/192", sizes: "192x192", type: "image/png" }],
+      },
+      {
+        name: "Presupuestos",
+        url: "/presupuestos",
+        icons: [{ src: "/icons/192", sizes: "192x192", type: "image/png" }],
+      },
+      {
+        name: "Calendario",
+        url: "/calendario",
+        icons: [{ src: "/icons/192", sizes: "192x192", type: "image/png" }],
+      },
+      {
+        name: "Reportes",
+        url: "/reportes",
+        icons: [{ src: "/icons/192", sizes: "192x192", type: "image/png" }],
+      },
     ],
   };
 }

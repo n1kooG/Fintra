@@ -31,6 +31,10 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  // Pantalla completa en celulares con notch: los margenes seguros se respetan con env(safe-area-inset-*).
+  viewportFit: "cover",
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#f5f3ee" },
     { media: "(prefers-color-scheme: dark)", color: "#100f0d" },

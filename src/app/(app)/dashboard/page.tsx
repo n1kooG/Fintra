@@ -189,35 +189,39 @@ export default async function DashboardPage() {
             ) : null}
           </div>
 
-          <div className="border-border flex flex-wrap border-t border-b">
-            <div className="border-border min-w-[170px] flex-1 border-r py-4 pr-5">
-              <div className="text-muted-foreground font-mono text-[9.5px] tracking-[0.08em] uppercase">
-                Patrimonio neto ({display})
-              </div>
-              <Amount
-                amountMinor={netWorth.netWorthMinor}
-                currency={display}
-                withSymbol
-                tone={netWorth.netWorthMinor < 0n ? "expense" : "neutral"}
-                className="mt-1.5 text-lg font-semibold"
-              />
-            </div>
-            {accounts.map((a) => (
-              <div
-                key={a.id}
-                className="border-border min-w-[170px] flex-1 border-r py-4 pr-5"
-              >
-                <div className="text-muted-foreground truncate font-mono text-[9.5px] tracking-[0.08em] uppercase">
-                  {a.name}
+          {/* El -ml-5 y el overflow-hidden esconden la linea izquierda de cada primera celda de la fila:
+              las demas quedan con 20px de aire a cada lado de la linea divisoria. */}
+          <div className="border-border overflow-hidden border-t border-b">
+            <div className="-ml-5 flex flex-wrap">
+              <div className="border-border min-w-[170px] flex-1 border-l px-5 py-4">
+                <div className="text-muted-foreground font-mono text-[9.5px] tracking-[0.08em] uppercase">
+                  Patrimonio neto ({display})
                 </div>
                 <Amount
-                  amountMinor={a.balanceMinor}
-                  currency={a.currency}
-                  tone={a.balanceMinor < 0n ? "expense" : "neutral"}
-                  className="mt-1.5 text-lg"
+                  amountMinor={netWorth.netWorthMinor}
+                  currency={display}
+                  withSymbol
+                  tone={netWorth.netWorthMinor < 0n ? "expense" : "neutral"}
+                  className="mt-1.5 text-lg font-semibold"
                 />
               </div>
-            ))}
+              {accounts.map((a) => (
+                <div
+                  key={a.id}
+                  className="border-border min-w-[170px] flex-1 border-l px-5 py-4"
+                >
+                  <div className="text-muted-foreground truncate font-mono text-[9.5px] tracking-[0.08em] uppercase">
+                    {a.name}
+                  </div>
+                  <Amount
+                    amountMinor={a.balanceMinor}
+                    currency={a.currency}
+                    tone={a.balanceMinor < 0n ? "expense" : "neutral"}
+                    className="mt-1.5 text-lg"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-[1.4fr_1fr]">

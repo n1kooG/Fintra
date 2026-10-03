@@ -54,7 +54,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
         <main
           id="contenido"
           tabIndex={-1}
-          className="min-w-0 flex-1 pb-[70px] outline-none md:pb-0"
+          className="min-w-0 flex-1 pb-[calc(70px+env(safe-area-inset-bottom))] outline-none md:pb-0"
         >
           {children}
         </main>
