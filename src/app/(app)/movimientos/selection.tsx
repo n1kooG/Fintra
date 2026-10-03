@@ -161,7 +161,7 @@ export function SelectionBar({
     <div
       role="region"
       aria-label="Acciones sobre la selección"
-      className="border-border bg-background fixed inset-x-0 bottom-[70px] z-30 flex flex-wrap items-center gap-x-5 gap-y-2 border-t px-6 py-3 md:bottom-0 md:left-[206px]"
+      className="border-border bg-background fixed inset-x-0 bottom-[calc(92px+env(safe-area-inset-bottom))] z-30 flex flex-wrap items-center gap-x-5 gap-y-2 border-t px-6 py-3 md:bottom-0 md:left-[206px]"
     >
       <span className="font-mono text-[11px] uppercase">
         {ids.length} {ids.length === 1 ? "seleccionado" : "seleccionados"}

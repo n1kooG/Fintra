@@ -44,7 +44,10 @@ self.addEventListener("activate", (event) => {
 
 /** Archivos estaticos seguros de guardar: no llevan datos de ninguna persona. */
 function isStaticAsset(url) {
+  // En desarrollo (localhost) los archivos conservan su nombre aunque cambien: no se guardan.
+  const isLocal = ["localhost", "127.0.0.1", "[::1]"].includes(self.location.hostname);
   return (
+    !isLocal &&
     url.origin === self.location.origin &&
     (url.pathname.startsWith("/_next/static/") ||
       url.pathname.startsWith("/icons/") ||
