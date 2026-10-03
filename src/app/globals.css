@@ -188,6 +188,12 @@
   }
   body {
     @apply bg-background text-foreground;
+    /* Celulares con notch o isla dinamica: la app ocupa toda la pantalla (viewport-fit=cover),
+       asi que el contenido deja libre la zona de la camara y los bordes en horizontal.
+       En escritorio estos valores valen 0. */
+    padding-top: env(safe-area-inset-top);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
   }
   html {
     @apply font-serif;
